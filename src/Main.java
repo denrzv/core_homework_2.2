@@ -28,24 +28,24 @@ public class Main {
 
     public static List<String> getRecruitsList(Collection<Person> persons) {
         return persons.parallelStream()
-                .filter(Person -> Person.getSex() == Sex.MAN)
-                .filter(Person -> Person.getAge() >= 18 && Person.getAge() <= 27)
-                .map(Person -> Person.getFamily())
+                .filter(person -> person.getSex() == Sex.MAN)
+                .filter(person -> person.getAge() >= 18 && person.getAge() <= 27)
+                .map(person -> person.getFamily())
                 .collect(Collectors.toList());
     }
 
     public static Long getUnderageCount(Collection<Person> persons) {
         return persons.parallelStream()
-                .filter(Person -> Person.getAge() < 18)
+                .filter(person -> person.getAge() < 18)
                 .count();
     }
 
     public static List<Person> getWorkableList(Collection<Person> persons) {
         return persons.parallelStream()
-                .filter(Person -> Person.getEducation() == Education.HIGHER)
-                .filter(Person -> Person.getAge() >= 18 && Person.getAge() <= 65)
-                .filter(Person -> (Person.getSex() == Sex.WOMAN && Person.getAge() <= 60) || Person.getSex() == Sex.MAN)
-                .sorted(Comparator.comparing(Person -> Person.getFamily()))
+                .filter(person -> person.getEducation() == Education.HIGHER)
+                .filter(person -> person.getAge() >= 18 && person.getAge() <= 65)
+                .filter(person -> (person.getSex() == Sex.WOMAN && person.getAge() <= 60) || person.getSex() == Sex.MAN)
+                .sorted(Comparator.comparing(person -> person.getFamily()))
                 .collect(Collectors.toList());
     }
 }
